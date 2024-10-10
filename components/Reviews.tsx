@@ -79,11 +79,11 @@ export default function Reviews() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-black">
+    <section ref={sectionRef} className="py-12 md:py-20 bg-black">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col md:flex-row items-start">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <div className="relative h-[500px] w-full">
+          <div className="w-full md:w-1/2 mb-8 md:mb-0">
+            <div className="relative h-[300px] md:h-[500px] w-full">
               <Image
                 src={reviews[currentReview].image}
                 alt={`Reviewer ${reviews[currentReview].author}`}
@@ -95,19 +95,19 @@ export default function Reviews() {
               />
             </div>
           </div>
-          <div className="md:w-1/2 md:pl-12 flex flex-col justify-between h-[500px]">
+          <div className="w-full md:w-1/2 md:pl-12 flex flex-col justify-between md:h-[500px]">
             <div>
-              <h2 className="text-4xl font-bold mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
                 <span className="text-white">WINNING</span>
                 <span className="text-red-600"> REVIEWS</span>
               </h2>
-              <p className="text-gray-300 text-lg mb-6">
+              <p className="text-gray-300 text-base md:text-lg mb-4 md:mb-6">
                 {reviews[currentReview].content}
               </p>
               <p className="text-white font-bold">{reviews[currentReview].author}</p>
               <p className="text-gray-400">{reviews[currentReview].socialMedia}</p>
             </div>
-            <div className="flex justify-between items-center mt-8">
+            <div className="flex justify-between items-center mt-6 md:mt-8">
               <div className="flex space-x-2">
                 {reviews.map((_, index) => (
                   <div
@@ -123,13 +123,13 @@ export default function Reviews() {
                   onClick={prevReview}
                   className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition-colors duration-300"
                 >
-                  <ChevronLeftIcon className="w-6 h-6" />
+                  <ChevronLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
                 <button
                   onClick={nextReview}
                   className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition-colors duration-300"
                 >
-                  <ChevronRightIcon className="w-6 h-6" />
+                  <ChevronRightIcon className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
               </div>
             </div>
