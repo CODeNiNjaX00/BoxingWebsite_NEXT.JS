@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, RefCallback } from "react";
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 
 interface Video {
@@ -22,6 +22,13 @@ export default function VideoGallery() {
   const [playingVideos, setPlayingVideos] = useState<number[]>([]);
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const setVideoRef: RefCallback<HTMLVideoElement> = (element: HTMLVideoElement | null) => {
+    if (element) {
+      const index = parseInt(element.dataset.index || '0', 10);
+      videoRefs.current[index] = element;
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -76,7 +83,8 @@ export default function VideoGallery() {
             >
               <div className="relative w-full h-64">
                 <video
-                  ref={el => videoRefs.current[index] = el}
+                  ref={setVideoRef}
+                  data-index={index}
                   src={`/videos/${video.filename}`}
                   className="w-full h-full object-cover cursor-pointer"
                   onClick={() => togglePlay(index)}
